@@ -26,6 +26,10 @@ typedef VOID (NTAPI* PIO_APC_ROUTINE) (
 #define FILE_OVERWRITE_IF               0x00000005
 #define FILE_MAXIMUM_DISPOSITION        0x00000005
 #define FILE_ALL_ACCESS (STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | 0x1FF)
+#define GENERIC_READ                     (0x80000000L)
+#define GENERIC_WRITE                    (0x40000000L)
+#define GENERIC_EXECUTE                  (0x20000000L)
+#define GENERIC_ALL                      (0x10000000L)
 
 // ntdll functions
 NTSTATUS NtDrawText(PUNICODE_STRING Text);
