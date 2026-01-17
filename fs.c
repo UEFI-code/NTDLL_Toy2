@@ -24,10 +24,12 @@ typedef struct _FILE_DIRECTORY_INFORMATION {
     WCHAR         FileName[1];
 } FILE_DIRECTORY_INFORMATION, * PFILE_DIRECTORY_INFORMATION;
 
-void list_dir_demo()
+void list_dir(char *ascii_path)
 {
+    ANSI_STRING AnsiString;
+    RtlInitAnsiString(&AnsiString, ascii_path);
     UNICODE_STRING dir;
-    RtlInitUnicodeString(&dir, L"\\??\\C:\\");
+    RtlAnsiStringToUnicodeString(&dir, &AnsiString, TRUE);
 
     OBJECT_ATTRIBUTES oa;
     InitializeObjectAttributes(

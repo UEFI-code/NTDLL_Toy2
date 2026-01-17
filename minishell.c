@@ -1,6 +1,6 @@
 #include "utils.h"
 
-void list_dir_demo();
+void list_dir(char *ascii_path);
 
 void execute_command(char* command)
 {
@@ -14,10 +14,10 @@ void execute_command(char* command)
         native_sleep(2000);
         printf("Awake!\n");
     }
-    else if (my_strcmp(command, "LISTDIR") == 0)
+    else if (my_strncmp(command, "LISTDIR ", 8) == 0)
     {
-        printf("Listing directory contents:\n");
-        list_dir_demo();
+        printf("Listing directory contents: %s\n", command + 8);
+        list_dir(command + 8);
     }
     else if(my_strcmp(command, "EXIT") == 0)
     {
