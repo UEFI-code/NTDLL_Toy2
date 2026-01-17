@@ -16,7 +16,16 @@ int main()
 		ULONG win32Err = RtlNtStatusToDosError(Status);
 		printf("Failed to open keyboard device: %x\n", win32Err);
 		//NOP_Toy();
-		native_sleep(5000);
-		return;
+		//native_sleep(5000);
+		//return;
 	}
+	char buf[256];
+	while(1)
+	{
+		printf("Enter a command: ");
+		fgets(buf, sizeof(buf), stdin);
+		buf[strcspn(buf, "\n")] = 0;  // Remove newline character
+		execute_command(buf);
+	}
+	
 }

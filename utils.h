@@ -84,12 +84,21 @@ ULONG NTAPI RtlNtStatusToDosError(
     NTSTATUS Status
 );
 
+VOID RtlExitUserProcess(NTSTATUS ExitStatus);
+VOID NtTerminateProcess(
+    IN HANDLE ProcessHandle,
+    IN NTSTATUS ExitStatus
+);
+
 // structures
 #include <ntddkbd.h>
 
 // my utility functions
 void NOP_Toy();
 int my_vsprintf(char* buffer, const char* format, va_list args);
+int strcmp(const char* str1, const char* str2);
+int strncmp(const char* str1, const char* str2, size_t n);
+void PutChar(char c);
 void native_sleep(unsigned int ms);
 int PrintString(char* fmt,...);
 char scancode_2_char(UINT16 scancode);
@@ -97,3 +106,4 @@ NTSTATUS OpenKeyboard(OUT PHANDLE pKeyboardHandle, IO_STATUS_BLOCK *pIoStatusBlo
 NTSTATUS native_get_keyboard_scancode(HANDLE KeyboardHandle, IO_STATUS_BLOCK *pIoStatusBlock, HANDLE EventHandle, KEYBOARD_INPUT_DATA *pInputData);
 NTSTATUS native_get_keyboard_char(HANDLE KeyboardHandle, IO_STATUS_BLOCK *pIoStatusBlock, HANDLE EventHandle, CHAR *c);
 NTSTATUS native_get_keyboard_str(HANDLE KeyboardHandle, IO_STATUS_BLOCK *pIoStatusBlock, HANDLE EventHandle, CHAR *buffer, UINT32 bufferSize);
+void execute_command(char* command);
