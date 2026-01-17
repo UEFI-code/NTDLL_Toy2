@@ -96,8 +96,8 @@ VOID NtTerminateProcess(
 // my utility functions
 void NOP_Toy();
 int my_vsprintf(char* buffer, const char* format, va_list args);
-int strcmp(const char* str1, const char* str2);
-int strncmp(const char* str1, const char* str2, size_t n);
+int my_strcmp(const char* str1, const char* str2);
+int my_strncmp(const char* str1, const char* str2, size_t n);
 void PutChar(char c);
 void native_sleep(unsigned int ms);
 int PrintString(char* fmt,...);
