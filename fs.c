@@ -53,9 +53,13 @@ void list_dir_demo()
         NULL,
         0
     );
+    if (!NT_SUCCESS(status))
+    {
+        printf("NtCreateFile failed: 0x%X\n", RtlNtStatusToDosError(status));
+        return;
+    }
 
     FILE_DIRECTORY_INFORMATION dir_info_buf[128];
-
     status = NtQueryDirectoryFile(
         hDir,
         NULL,
@@ -69,10 +73,10 @@ void list_dir_demo()
         NULL,
         TRUE
     );
-
     if (status == STATUS_NO_MORE_FILES)
     {
         printf("STATUS_NO_MORE_FILES\n");
+        NtClose(hDir);
         return;
     }
 
