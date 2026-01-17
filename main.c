@@ -4,12 +4,13 @@
 int main()
 {
 	UNICODE_STRING Text = RTL_CONSTANT_STRING(L"Msg From ntdll!NtDrawText\n");
-	NTSTATUS Status = NtDrawText(&Text);
+    NtDrawText(&Text);
     //NOP_Toy();
-	//PrintString("Msg From ntdll!PrintString: %d, %s\n", 233, "Hello Native World");
+	PrintString("Msg From ntdll!PrintString: %d, %s\n", 233, "Hello Native World");
 	// open keyboard device
-	HANDLE KeyboardHandle; char c;
-	Status = OpenKeyboard(&KeyboardHandle);
+	HANDLE KeyboardHandle;
+	IO_STATUS_BLOCK IoStatusBlock;
+	NTSTATUS Status = OpenKeyboard(&KeyboardHandle, &IoStatusBlock);
 	if (!NT_SUCCESS(Status))
 	{
 		ULONG win32Err = RtlNtStatusToDosError(Status);
@@ -18,18 +19,4 @@ int main()
 		native_sleep(5000);
 		return;
 	}
-	while (1)
-	{
-		native_get_keyboard_char(KeyboardHandle, &c);
-		printf("Received keyboard char: %c\n", c);
-		if (c == 27) // ESC key to exit
-		{
-			break;
-		}
-	}
-	return;
 }
-
-// link main.obj toolget.obj ntdll.lib /SUBSYSTEM:NATIVE /machine:x64 /ENTRY:entry /out:NativeEXE_1.exe
-
-// ref https://medium.com/windows-os-internals/windows-native-api-programming-hello-world-8f256abe1c85
