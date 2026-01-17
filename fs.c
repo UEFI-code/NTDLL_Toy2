@@ -86,7 +86,10 @@ void list_dir(char *ascii_path)
     while (1)
     {
         wprintf(
-            L"%.*s\n",
+            L"AccessTime: %X, Size: %X, Attr: %X, Name: %.*s\n",
+            (UINT64)info->LastAccessTime.QuadPart,
+            (UINT64)info->EndOfFile.QuadPart,
+            info->FileAttributes,
             info->FileNameLength / 2,
             info->FileName
         );
