@@ -1,4 +1,7 @@
-# include "utils.h"
+#include "utils.h"
+
+void list_dir_demo();
+
 void execute_command(char* command)
 {
     if (my_strcmp(command, "HI") == 0)
@@ -10,6 +13,11 @@ void execute_command(char* command)
         printf("Sleeping for 2 seconds...\n");
         native_sleep(2000);
         printf("Awake!\n");
+    }
+    else if (my_strcmp(command, "LISTDIR") == 0)
+    {
+        printf("Listing directory contents:\n");
+        list_dir_demo();
     }
     else if(my_strcmp(command, "EXIT") == 0)
     {

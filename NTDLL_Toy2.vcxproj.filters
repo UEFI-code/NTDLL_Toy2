@@ -30,6 +30,9 @@
     <ClCompile Include="minishell.c">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="fs.c">
+      <Filter>リソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils.h">
