@@ -24,6 +24,8 @@ typedef struct _FILE_DIRECTORY_INFORMATION {
     WCHAR         FileName[1];
 } FILE_DIRECTORY_INFORMATION, * PFILE_DIRECTORY_INFORMATION;
 
+FILE_DIRECTORY_INFORMATION dir_info_buf[128];
+
 void list_dir(char *ascii_path)
 {
     ANSI_STRING AnsiString;
@@ -61,7 +63,6 @@ void list_dir(char *ascii_path)
         return;
     }
 
-    FILE_DIRECTORY_INFORMATION dir_info_buf[128];
     status = NtQueryDirectoryFile(
         hDir,
         NULL,
