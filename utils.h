@@ -54,6 +54,11 @@ NTSTATUS NtCreateFile(
     PVOID EaBuffer,
     ULONG EaLength
 );
+NTSTATUS NtOpenDirectoryObject(
+  _Out_ PHANDLE DirectoryHandle,
+  _In_ ACCESS_MASK DesiredAccess,
+  _In_ POBJECT_ATTRIBUTES ObjectAttributes
+);
 NTSTATUS NtCreateEvent(
     OUT PHANDLE EventHandle,
     ACCESS_MASK DesiredAccess,
@@ -95,7 +100,16 @@ NTSTATUS NTAPI NtQueryDirectoryFile (
     _In_ BOOLEAN ReturnSingleEntry,
     _In_opt_ PUNICODE_STRING FileName,
     _In_ BOOLEAN RestartScan
-    );
+);
+NTSTATUS NTAPI NtQueryDirectoryObject (
+  _In_ HANDLE DirectoryHandle,
+  _Out_opt_ PVOID Buffer,
+  _In_ ULONG Length,
+  _In_ BOOLEAN ReturnSingleEntry,
+  _In_ BOOLEAN RestartScan,
+  _Inout_ PULONG Context,
+  _Out_opt_ PULONG ReturnLength
+);
 
 VOID NtClose(IN HANDLE Handle);
 VOID RtlExitUserProcess(NTSTATUS ExitStatus);

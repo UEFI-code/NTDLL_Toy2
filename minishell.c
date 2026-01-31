@@ -1,6 +1,7 @@
 #include "utils.h"
 
 void list_dir(char *ascii_path);
+void list_dev(char *ascii_path);
 
 void execute_command(char* command)
 {
@@ -18,6 +19,11 @@ void execute_command(char* command)
     {
         printf("Listing directory contents: %s\n", command + 8);
         list_dir(command + 8);
+    }
+    else if (my_strncmp(command, "LISTDEV ", 8) == 0)
+    {
+        printf("Listing device contents: %s\n", command + 8);
+        list_dev(command + 8);
     }
     else if(my_strcmp(command, "EXIT") == 0)
     {

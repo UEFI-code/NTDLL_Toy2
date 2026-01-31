@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dev.c" />
     <ClCompile Include="fs.c" />
     <ClCompile Include="key_decode.c" />
     <ClCompile Include="main.c" />
